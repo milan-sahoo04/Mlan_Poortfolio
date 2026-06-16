@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import myphoto2 from "../assets/myphoto2.avif";
 gsap.registerPlugin(ScrollTrigger);
 
 const socials = [
@@ -301,7 +301,7 @@ export default function Contact() {
               }}
             >
               <img
-                src="src/assets/myphoto2.avif"
+                src={myphoto2}
                 alt="Milan"
                 style={{
                   width: "100%",

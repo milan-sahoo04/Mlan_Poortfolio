@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import myphoto1 from "../assets/myphoto1.avif";
 gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
@@ -514,7 +514,7 @@ export default function About() {
           }}
         >
           <img
-            src="/src/assets/myphoto1.avif"
+            src={myphoto1}
             alt="Milan Sahoo"
             style={{
               height: "100%",

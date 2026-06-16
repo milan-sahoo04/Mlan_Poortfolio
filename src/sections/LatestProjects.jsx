@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import project1 from "../assets/project1.avif";
+import project2 from "../assets/project2.avif";
+import project3 from "../assets/project3.avif";
+import project4 from "../assets/project4.avif";
+import project5 from "../assets/project5.avif";
+import project6 from "../assets/project6.avif";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
@@ -10,7 +15,7 @@ const projects = [
     title: "BHOJANAM",
     subtitle: "Food Delivery App",
     desc: "A full-stack food ordering platform with menus, diet plans, kids meals, and subscriptions.",
-    img: "/src/assets/project1.avif",
+    img: project1,
     link: "https://bhojanam-food-delivery-app.vercel.app",
     deployed: true,
     bg: "linear-gradient(160deg, #0f0f1a 0%, #1a0d2e 100%)",
@@ -21,7 +26,7 @@ const projects = [
     title: "NOTESHUB",
     subtitle: "Notes Sharing Platform",
     desc: "Community-powered study notes platform — discover, upload, and share notes effortlessly.",
-    img: "/src/assets/project2.avif",
+    img: project2,
     link: "https://playful-genie-1f03b8.netlify.app",
     deployed: true,
     bg: "linear-gradient(160deg, #0d1533 0%, #0a1a3a 100%)",
@@ -32,7 +37,7 @@ const projects = [
     title: "RESEARCHLAB",
     subtitle: "Academic Research Portfolio",
     desc: "A research showcase site for publications, citations, and team profiles in computer vision.",
-    img: "/src/assets/project3.avif",
+    img: project3,
     link: "https://alokpatiresearch.netlify.app",
     deployed: true,
     bg: "linear-gradient(160deg, #0a1a0a 0%, #0d2010 100%)",
@@ -43,7 +48,7 @@ const projects = [
     title: "FLAPPY BIRD",
     subtitle: "Desktop Game",
     desc: "A classic Flappy Bird clone built as a desktop app with pixel-art graphics and scoring.",
-    img: "/src/assets/project4.avif",
+    img: project4,
     link: null,
     deployed: false,
     bg: "linear-gradient(160deg, #1a1000 0%, #2a1a00 100%)",
@@ -54,7 +59,7 @@ const projects = [
     title: "FACULTYHUB",
     subtitle: "Education Management",
     desc: "A high-performance workspace for faculty and students to manage schedules and data in real-time.",
-    img: "/src/assets/project5.avif",
+    img: project5,
     link: null,
     deployed: false,
     bg: "linear-gradient(160deg, #1a0a0a 0%, #2a0d0d 100%)",
@@ -65,7 +70,7 @@ const projects = [
     title: "MEDICUS HMS",
     subtitle: "Hospital Management System",
     desc: "A complete hospital management solution covering administrative, financial, and inventory workflows.",
-    img: "/src/assets/project6.avif",
+    img: project6,
     link: null,
     deployed: false,
     bg: "linear-gradient(160deg, #001a1a 0%, #002a2a 100%)",
