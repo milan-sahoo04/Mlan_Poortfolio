@@ -408,7 +408,7 @@ export default function Contact() {
               }}
             >
               <img
-                src="src/assets/myphoto2.avif"
+                src={myphoto2}
                 alt="Milan"
                 style={{
                   width: "100%",
