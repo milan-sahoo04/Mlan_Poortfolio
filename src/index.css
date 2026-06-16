@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  /* ✅ cursor: none removed — breaks tap on mobile */
+}
+
+/* Custom cursor — only on non-touch / pointer devices */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
+/* Custom cursor — blue dot */
+#cursor {
+  width: 12px;
+  height: 12px;
+  background: #6366f1;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  /* Hide cursor dot on touch devices */
+  display: none;
+}
+
+@media (pointer: fine) {
+  #cursor {
+    display: block;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #39ff14;
+  border-radius: 2px;
+}
+
+/* ─── Global Responsive Utilities ─────────────────────────── */
+
+/* Prevent horizontal overflow on all screen sizes */
+section,
+div,
+main {
+  max-width: 100%;
+}
+
+/* Base font scaling for small screens */
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Touch targets — minimum 44px for all interactive elements on mobile */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Restore cursor on touch devices */
+  * {
+    cursor: auto !important;
+  }
+
+  button,
+  a,
+  [role="button"] {
+    cursor: pointer !important;
+  }
+}
