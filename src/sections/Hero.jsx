@@ -7,7 +7,7 @@ export default function Hero() {
   const h1Ref = useRef(null);
   const h2Ref = useRef(null);
   const btnRef = useRef(null);
-  const pRef = useRef(null);
+  const pitchRef = useRef(null);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export default function Hero() {
       h1Ref.current,
       h2Ref.current,
       btnRef.current,
-      pRef.current,
     ].filter(Boolean);
 
     gsap.set(els, { y: 60, opacity: 0 });
+    gsap.set(pitchRef.current, { y: 30, opacity: 0 });
 
     const id = setTimeout(() => {
       gsap.to(els, {
@@ -31,11 +31,36 @@ export default function Hero() {
         overwrite: true,
         onComplete: () => gsap.set(els, { clearProps: "all" }),
       });
+
+      // Pitch statement animates in slightly after the headline,
+      // with its own underline-draw animation for emphasis
+      gsap.to(pitchRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.55,
+        ease: "power3.out",
+        onComplete: () =>
+          gsap.set(pitchRef.current, { clearProps: "transform,opacity" }),
+      });
+
+      gsap.fromTo(
+        ".pitch-underline",
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 0.9,
+          delay: 0.85,
+          ease: "power2.inOut",
+          transformOrigin: "left center",
+        },
+      );
     }, 50);
 
     return () => {
       clearTimeout(id);
       gsap.set(els, { clearProps: "all" });
+      gsap.set(pitchRef.current, { clearProps: "all" });
     };
   }, []);
 
@@ -89,12 +114,21 @@ export default function Hero() {
           Connect
         </button>
 
-        <p ref={pRef} className="hero-desc">
-          I thrive on solving real-world problems, turning ideas into clean,
-          maintainable code, and learning through experimentation. You'll find
-          me building side projects, diving into new tech stacks, or simply
-          exploring what's next in the world of web development.
-        </p>
+        {/* ── Redesigned client-impressing pitch statement ── */}
+        <div ref={pitchRef} className="hero-pitch">
+          <span className="pitch-quote-mark">“</span>
+          <p className="hero-pitch-text">
+            I help{" "}
+            <span className="pitch-highlight">businesses get more clients</span>
+            <br className="pitch-break" /> through{" "}
+            <span className="pitch-highlight pitch-highlight-blue">
+              fast, modern websites
+            </span>
+            <br className="pitch-break" /> built to convert visitors into
+            customers.
+          </p>
+          <span className="pitch-underline" />
+        </div>
       </div>
 
       {/* 3D RING — sits in normal flow on mobile, absolute on desktop */}
@@ -190,25 +224,73 @@ export default function Hero() {
           align-items: center;
           gap: 8px;
           cursor: pointer;
-          margin-bottom: 22px;
+          margin-bottom: 34px;
           transition: transform 0.2s, box-shadow 0.2s;
           -webkit-tap-highlight-color: transparent;
           touch-action: manipulation;
         }
 
-        /* ─── DESC ─────────────────────────────────────── */
-        .hero-desc {
+        /* ─── PITCH STATEMENT — redesigned ─────────────── */
+        .hero-pitch {
+          position: relative;
+          max-width: 500px;
+          padding-left: 28px;
+        }
+
+        .pitch-quote-mark {
+          position: absolute;
+          top: -22px;
+          left: -6px;
+          font-family: 'Inter', sans-serif;
+          font-size: 4.5rem;
+          font-weight: 800;
+          color: #39FF14;
+          opacity: 0.18;
+          line-height: 1;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        .hero-pitch-text {
           font-family: 'Inter', sans-serif !important;
-          color: #ffffff77;
-          font-size: clamp(0.82rem, 1.5vw, 0.9rem);
-          line-height: 1.75;
-          max-width: 430px;
-          margin-top: 0;
+          color: #f5f5f5;
+          font-size: clamp(1.1rem, 2vw, 1.45rem);
+          font-weight: 600;
+          line-height: 1.45;
+          letter-spacing: -0.01em;
+          margin: 0;
+          position: relative;
+          z-index: 1;
+        }
+
+        .pitch-highlight {
+          color: #39FF14;
+          font-weight: 800;
+          text-shadow: 0 0 22px #39ff1455;
+        }
+
+        .pitch-highlight-blue {
+          color: #818cf8;
+          font-weight: 800;
+          text-shadow: 0 0 22px #6366f155;
+        }
+
+        .pitch-break {
+          display: none;
+        }
+
+        .pitch-underline {
+          display: block;
+          width: 64px;
+          height: 3px;
+          background: linear-gradient(90deg, #39FF14, #6366f1);
+          border-radius: 2px;
+          margin-top: 18px;
+          transform: scaleX(0);
         }
 
         /* ─── RING WRAPPER ─────────────────────────────── */
         .hero-ring-wrap {
-          /* Desktop: absolute, anchored bottom-right */
           position: absolute;
           right: 2%;
           bottom: 0;
@@ -242,7 +324,9 @@ export default function Hero() {
           .hero-text {
             max-width: 100% !important;
           }
-          /* Ring: back into normal flow, centred below text */
+          .hero-pitch {
+            max-width: 100% !important;
+          }
           .hero-ring-wrap {
             position: relative !important;
             right: auto !important;
@@ -268,6 +352,16 @@ export default function Hero() {
             height: min(260px, 78vw) !important;
             margin-top: 20px;
           }
+          .hero-pitch {
+            padding-left: 18px !important;
+          }
+          .pitch-quote-mark {
+            font-size: 3.2rem !important;
+            top: -14px !important;
+          }
+          .pitch-break {
+            display: block !important;
+          }
         }
 
         /* ─── SMALL MOBILE ≤390px ──────────────────────── */
@@ -275,6 +369,9 @@ export default function Hero() {
           .hero-ring-wrap {
             width: min(220px, 84vw) !important;
             height: min(220px, 84vw) !important;
+          }
+          .hero-pitch {
+            padding-left: 14px !important;
           }
         }
       `}</style>

@@ -6,6 +6,7 @@ import About from "./sections/About";
 import WorkProcess from "./sections/WorkProcess";
 import Projects from "./sections/Projects";
 import LatestProjects from "./sections/LatestProjects";
+import Testimonials from "./sections/Testimonials";
 import CTA from "./sections/CTA";
 import Contact from "./sections/Contact";
 
@@ -30,6 +31,9 @@ export default function App() {
       </section>
 
       <Marquee />
+
+      <Testimonials />
+
       <CTA />
 
       <section id="contact">
