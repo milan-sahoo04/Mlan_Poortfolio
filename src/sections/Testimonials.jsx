@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import testi from "../assets/alok.avif";
+import testi from "../assets/Alok.avif";
 import testi1 from "../assets/testi1.avif";
 import testi2 from "../assets/testi2.avif";
 import testi3 from "../assets/testi3.avif";
